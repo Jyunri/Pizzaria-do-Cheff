@@ -8,16 +8,18 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by Jimy on 8/28/16.
  */
-public class CustomAdapter extends ArrayAdapter<String> {
+public class CustomAdapter extends ArrayAdapter{
 
-    String[] listaItens;
-    String[] listaDescricao;
+    ArrayList<String> listaItens;
+    ArrayList<String> listaDescricao;
     Integer[] listaImagens;
 
-    public CustomAdapter(Context context, String[] listaItens, String[] listaDescricao, Integer[] listaImagens) {
+    public CustomAdapter(Context context, ArrayList<String> listaItens, ArrayList<String> listaDescricao, Integer[] listaImagens) {
         super(context, R.layout.custom_row, listaItens);
         this.listaItens = listaItens;
         this.listaDescricao = listaDescricao;
@@ -29,17 +31,17 @@ public class CustomAdapter extends ArrayAdapter<String> {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View customView = inflater.inflate(R.layout.custom_row, parent, false);
 
-        String item = listaItens[position];
+        String item = listaItens.get(position);
         TextView tvItem = (TextView)customView.findViewById(R.id.tvItem);
         tvItem.setText(item);
 
-        String descricao = listaDescricao[position];
+        String descricao = listaDescricao.get(position);
         TextView tvDescricao = (TextView)customView.findViewById(R.id.tvDescricao);
         tvDescricao.setText(descricao);
 
-        //// TODO: 8/28/16 setar imagem diinamicamente 
-        ImageView ivImagem = (ImageView)customView.findViewById(R.id.ivImagem);
-        ivImagem.setImageResource(R.drawable.logocheff);
+//        //// TODO: 8/28/16 setar imagem diinamicamente
+//        ImageView ivImagem = (ImageView)customView.findViewById(R.id.ivImagem);
+//        ivImagem.setImageResource(R.drawable.logocheff);
 
         return customView;
     }
