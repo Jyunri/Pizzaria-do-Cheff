@@ -16,8 +16,11 @@ public class Cardapio extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cardapio);
 
+        ArrayList<String> listaCodigo = new ArrayList<>();
         ArrayList<String> lista = new ArrayList<>();
         ArrayList<String> descricao = new ArrayList<>();
+        ArrayList<String> precoGrandes = new ArrayList<>();
+        ArrayList<String> precoGigantes = new ArrayList<>();
         Integer[] imagens = {1};
 
         //recebe os dados do arquivo
@@ -26,15 +29,14 @@ public class Cardapio extends AppCompatActivity {
         ArrayList<String[]> pizzas = csvParser.read();
 
         for(String[] pizza:pizzas) {
+            listaCodigo.add(pizza[0].replace("\"", ""));
             lista.add(pizza[1].replace("\"", ""));
             descricao.add(pizza[2].replace("\"", ""));
+            precoGrandes.add(pizza[3].replace("\"", ""));
+            precoGigantes.add(pizza[4].replace("\"", ""));
         }
 
-        for(String s:lista) System.out.println(s);
-        System.out.println("Descricao:");
-        for(String s:descricao) System.out.println(s);
-
-        ListAdapter listAdapter = new CustomAdapter(this,lista,descricao, imagens);
+        ListAdapter listAdapter = new CustomAdapter(this,listaCodigo,lista,descricao, precoGrandes, precoGigantes);
         ListView lvCardapio = (ListView)findViewById(R.id.lvCardapio);
         lvCardapio.setAdapter(listAdapter);
     }

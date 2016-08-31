@@ -22,8 +22,31 @@
             android:id="@+id/tvDescricao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:text="Queijo, Ovo, Presunto"
+            android:paddingTop="2dp"
             android:layout_marginLeft="10dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvPrecoGrande"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Grande: R$30,00"
+                android:paddingTop="2dp"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tvPrecoGigante"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gigante: R$60,00"
+                android:paddingTop="2dp"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold"/>
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
