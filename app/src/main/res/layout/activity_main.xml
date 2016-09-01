@@ -12,7 +12,9 @@
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="50dp"
         />
+
 
     <com.roughike.bottombar.BottomBar
         android:id="@+id/bottomBar"
@@ -21,7 +23,8 @@
         android:layout_alignParentBottom="true"
         app:bb_tabXmlResource="@xml/bottombar_tabs"
         app:bb_behavior="shifting"
-
+        android:layout_gravity="bottom"
         />
+
 
 </RelativeLayout>

@@ -22,6 +22,6 @@
         id="@+id/tab_facebook"
         barColorWhenSelected="@color/royalblue"
         activeColor = "@color/white"
-        icon="@drawable/ic_facebook_box"
+        icon="@drawable/logofacebook"
         title="Facebook" />
 </tabs>

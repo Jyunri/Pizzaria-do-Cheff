@@ -1,6 +1,7 @@
 package br.com.cdf.pizzariadocheff;
 
-import android.app.FragmentTransaction;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 
@@ -33,18 +34,18 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onTabSelected(@IdRes int tabId) {
                 switch (tabId) {
-                    //// TODO: 8/31/16 melhorar para o primeiro acesso
                     case (R.id.tab_ligar):
-                        fm.beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
-                        fm.beginTransaction().addToBackStack(null);
+                        homefragment();
+                        if(!firstAccess) ligarfragment();
+                        else    firstAccess = false;
                         break;
                     case (R.id.tab_cardapio):
-                        fm.beginTransaction().replace(R.id.fragment_container, new CardapioFragment()).commit();
-                        fm.beginTransaction().addToBackStack(null);
+                        cardapiofragment();
                         break;
                     case (R.id.tab_localizacao):
                         break;
                     case (R.id.tab_facebook):
+                        facebookfragment();
                         break;
                 }
             }
@@ -54,22 +55,82 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onTabReSelected(@IdRes int tabId) {
                 switch (tabId) {
-                    //// TODO: 8/31/16 melhorar para o primeiro acesso
                     case (R.id.tab_ligar):
-                        Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                        callIntent.setData(Uri.parse("tel:123456789"));
-                        startActivity(callIntent);
+                        ligarfragment();
                         break;
                     case (R.id.tab_cardapio):
-                        fm.beginTransaction().replace(R.id.fragment_container, new CardapioFragment()).commit();
-                        fm.beginTransaction().addToBackStack(null);
+                        cardapiofragment();
                         break;
                     case (R.id.tab_localizacao):
                         break;
                     case (R.id.tab_facebook):
+                        facebookfragment();
                         break;
                 }
             }
         });
+    }
+
+    private void ligarfragment() {
+        String title = "Ligar";
+        String message = "Deseja discar para "+getString(R.string.telefonepizzaria)+"?";
+        customDialog(title, message);
+    }
+
+
+    private void homefragment() {
+        fm.beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+        fm.beginTransaction().addToBackStack(null);
+        return;
+    }
+
+    private void cardapiofragment() {
+        fm.beginTransaction().replace(R.id.fragment_container, new CardapioFragment()).commit();
+        fm.beginTransaction().addToBackStack(null);
+    }
+
+    private void facebookfragment() {
+        String title;
+        String message;
+        title = "Facebook";
+        message = "Deseja entrar no facebook da Pizzaria do Cheff?";
+        customDialog(title, message);
+    }
+
+    public void customDialog(final String title, String message)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        //builder.setCancelable(true);
+        builder.setPositiveButton("Sim",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        switch (title){
+                            case "Ligar":
+                                Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                                callIntent.setData(Uri.parse("tel:"+getString(R.string.telefonepizzaria)));
+                                startActivity(callIntent);
+                                break;
+                            case "Facebook":
+                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/pizza.do.cheff"));
+                                startActivity(browserIntent);
+                                break;
+                        }
+                    }
+                });
+        builder.setNegativeButton(
+                "Nao",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        switch (title){
+                            case "Ligar": dialog.cancel(); break;
+                            case "Facebook": dialog.cancel(); break;
+                        }
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }
