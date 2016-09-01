@@ -1,13 +1,13 @@
 package br.com.cdf.pizzariadocheff;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
 
 import android.support.annotation.IdRes;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabReselectListener;
@@ -17,11 +17,15 @@ import com.roughike.bottombar.OnTabSelectListener;
 public class MainActivity extends AppCompatActivity{
 
     boolean firstAccess;
+    FragmentManager fm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        fm = getSupportFragmentManager();
+        fm.beginTransaction().add(R.id.fragment_container, new HomeFragment()).commit();
 
         firstAccess = true;
         BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
@@ -31,15 +35,12 @@ public class MainActivity extends AppCompatActivity{
                 switch (tabId) {
                     //// TODO: 8/31/16 melhorar para o primeiro acesso
                     case (R.id.tab_ligar):
-                        if(firstAccess) firstAccess = false;
-                        else {
-                            Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                            callIntent.setData(Uri.parse("tel:123456789"));
-                            startActivity(callIntent);
-                        }
+                        fm.beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+                        fm.beginTransaction().addToBackStack(null);
                         break;
                     case (R.id.tab_cardapio):
-                        startActivity(new Intent(getApplicationContext(), Cardapio.class));
+                        fm.beginTransaction().replace(R.id.fragment_container, new CardapioFragment()).commit();
+                        fm.beginTransaction().addToBackStack(null);
                         break;
                     case (R.id.tab_localizacao):
                         break;
@@ -60,7 +61,8 @@ public class MainActivity extends AppCompatActivity{
                         startActivity(callIntent);
                         break;
                     case (R.id.tab_cardapio):
-                        startActivity(new Intent(getApplicationContext(), Cardapio.class));
+                        fm.beginTransaction().replace(R.id.fragment_container, new CardapioFragment()).commit();
+                        fm.beginTransaction().addToBackStack(null);
                         break;
                     case (R.id.tab_localizacao):
                         break;

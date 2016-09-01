@@ -1,20 +1,24 @@
 package br.com.cdf.pizzariadocheff;
 
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-public class Cardapio extends AppCompatActivity {
+public class CardapioFragment extends Fragment {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cardapio);
+    public View onCreateView(LayoutInflater inflater, ViewGroup parentViewGroup, Bundle savedInstanceState) {
+
+        View rootView = inflater.inflate(R.layout.fragment_cardapio, parentViewGroup, false);
 
         ArrayList<String> listaCodigo = new ArrayList<>();
         ArrayList<String> lista = new ArrayList<>();
@@ -36,8 +40,11 @@ public class Cardapio extends AppCompatActivity {
             precoGigantes.add(pizza[4].replace("\"", ""));
         }
 
-        ListAdapter listAdapter = new CustomAdapter(this,listaCodigo,lista,descricao, precoGrandes, precoGigantes);
-        ListView lvCardapio = (ListView)findViewById(R.id.lvCardapio);
+        ListAdapter listAdapter = new CustomAdapter(super.getActivity(),listaCodigo,lista,descricao, precoGrandes, precoGigantes);
+        ListView lvCardapio = (ListView)rootView.findViewById(R.id.lvCardapio);
         lvCardapio.setAdapter(listAdapter);
+
+        return rootView;
+
     }
 }
