@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity{
                         cardapiofragment();
                         break;
                     case (R.id.tab_localizacao):
+                        localizacaofragment();
                         break;
                     case (R.id.tab_facebook):
                         facebookfragment();
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity{
                         cardapiofragment();
                         break;
                     case (R.id.tab_localizacao):
+                        localizacaofragment();
                         break;
                     case (R.id.tab_facebook):
                         facebookfragment();
@@ -87,6 +89,12 @@ public class MainActivity extends AppCompatActivity{
     private void cardapiofragment() {
         fm.beginTransaction().replace(R.id.fragment_container, new CardapioFragment()).commit();
         fm.beginTransaction().addToBackStack(null);
+    }
+
+    private void localizacaofragment(){
+        fm.beginTransaction().replace(R.id.fragment_container, new MapsActivity()).commit();
+        fm.beginTransaction().addToBackStack(null);
+
     }
 
     private void facebookfragment() {
