@@ -1,14 +1,18 @@
 package br.com.cdf.pizzariadocheff;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 
 import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabReselectListener;
@@ -92,6 +96,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private void localizacaofragment(){
+        isOnline();
         fm.beginTransaction().replace(R.id.fragment_container, new MapsActivity()).commit();
         fm.beginTransaction().addToBackStack(null);
 
@@ -140,5 +145,16 @@ public class MainActivity extends AppCompatActivity{
 
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    public boolean isOnline() {
+        ConnectivityManager conMgr = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = conMgr.getActiveNetworkInfo();
+
+        if(netInfo == null || !netInfo.isConnected() || !netInfo.isAvailable()){
+            Toast.makeText(getApplicationContext(), "Sem conexão com Internet", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
     }
 }
