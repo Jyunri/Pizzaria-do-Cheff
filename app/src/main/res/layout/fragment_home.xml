@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src="@drawable/psetembro"
+        android:src="@drawable/promoexclusiva"
         android:scaleType="fitCenter"
         android:padding="15dp"
         android:adjustViewBounds="true"

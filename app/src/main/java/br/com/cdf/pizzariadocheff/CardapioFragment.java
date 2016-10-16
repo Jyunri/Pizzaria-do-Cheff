@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -27,8 +29,10 @@ public class CardapioFragment extends Fragment {
         ArrayList<String> precoGigantes = new ArrayList<>();
         Integer[] imagens = {1};
 
+        Toast.makeText(super.getActivity(),"Preços sujeitos à alteração",Toast.LENGTH_LONG).show();
+
         //recebe os dados do arquivo
-        InputStream i = getResources().openRawResource(R.raw.menupizza);
+        InputStream i = getResources().openRawResource(R.raw.menupizza3);
         CSVParser csvParser = new CSVParser(i);
         ArrayList<String[]> pizzas = csvParser.read();
 
