@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "551980749903",
+    "firebase_url": "https://pizzariadocheff-bbb58.firebaseio.com",
+    "project_id": "pizzariadocheff-bbb58",
+    "storage_bucket": "pizzariadocheff-bbb58.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:551980749903:android:a57cca72b26e59c0",
+        "android_client_info": {
+          "package_name": "br.com.cdf.pizzariadocheff"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "551980749903-15kpnsskcmo6o8osvifhuf328ebjp1bf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.cdf.pizzariadocheff",
+            "certificate_hash": "0C47086A440F4F2EFE07369F39237489C9684FFB"
+          }
+        },
+        {
+          "client_id": "551980749903-dfvs03llnl84hje32na29nqg5jb86ueo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZ-GxSgNK_plSUdZOpIeAYYIb5b0uFqi4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "551980749903-dfvs03llnl84hje32na29nqg5jb86ueo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
