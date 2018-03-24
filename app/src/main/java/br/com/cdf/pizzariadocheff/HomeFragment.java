@@ -13,7 +13,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parentViewGroup,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_home, parentViewGroup, false);
+        View rootView = inflater.inflate(R.layout.custom_layout, parentViewGroup, false);
         return rootView;
     }
 }
